@@ -402,6 +402,8 @@ class TLSProtocolWrapper(ProtocolWrapper):
                 d = m2bio_read(sslBioPtr, pending)
                 if d is not None: # This is strange, but d can be None
                     decryptedData += d
+                    if decryptedData == "":
+                        break
                 else:
                     assert(m2bio_should_retry(sslBioPtr))
             else:
